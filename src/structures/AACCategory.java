@@ -8,9 +8,6 @@ package structures;
  */
 public class AACCategory {
   
-// Note that your AACCategory class will likely contain an AssociativeArray<String,String>
-// that maps image locations (strings) to words (also strings).
-
   // +--------+------------------------------------------------------
   // | Fields |
   // +--------+

@@ -15,10 +15,6 @@ import java.io.IOException;
  */
 public class AACMappings {
   
-// Note that your AACMappings class will likely contain an AACCategory object that maps filenames
-// to their corresponding words. You may also want an AssociativeArray<String,AACCategory> that maps
-// either filenames or names to categories.
-
   // +--------+------------------------------------------------------
   // | Fields |
   // +--------+
@@ -61,12 +57,14 @@ public class AACMappings {
    * Reads contente from filename and populates categoryMap
    * 
    * @param filename - the name of the file to read from
-   * @throws IOException */
+   * @throws IOException 
+   * */
   public void readFromFile(String filename) throws IOException {
     try (BufferedReader reader = new BufferedReader(new FileReader(filename))) {
 
       String line = reader.readLine();
 
+      // Read file until find a null line
       while (line != null) {
         // Split the line by space
         String[] splittedLine = line.split(" ");
@@ -82,7 +80,6 @@ public class AACMappings {
       
         // If it is a category, update the current category
         String[] categoryParts = imageLoc.split("/"); // Split the category path
-
         if (isCategory​(imageLoc)) {
             // Create a new AACCategory for this category
             this.categoryMap.set(text, new AACCategory(categoryParts[1]));
@@ -97,11 +94,9 @@ public class AACMappings {
       } // while
     } catch (IOException | NullKeyException | KeyNotFoundException e) {
         // Handle the exceptions here
-        e.printStackTrace(); // Or log the exception
+        e.printStackTrace();
     } // catch
-    System.out.println(categoryMap.toString());
 } // readFromFile
-
 
   /** 
    * Adds the mapping to the current category (or the default category if that is the current category)
@@ -111,7 +106,6 @@ public class AACMappings {
    */
   public void add(String imageLoc, String text) {
     try {
-      System.out.println("Current category: " + currentCategory);
       this.categoryMap.get(currentCategory).addItem​(imageLoc, text);
     } catch (NullKeyException e) {
       e.printStackTrace();
@@ -149,14 +143,16 @@ public class AACMappings {
    * the image. If the image provided is a category, it also updates the AAC's current category 
    * to be the category associated with that image.
    *
-   * @param imageLoc - the location where the image is stored */
+   * @param imageLoc - the location where the image is stored 
+   * */
   public String getText(String imageLoc) {
 
-    System.out.println(imageLoc);
-    
-    String[] parts = imageLoc.split("/"); // Split the category path
+    // Split the category path
+    String[] parts = imageLoc.split("/");
 
+    // Initializes text
     String text = "";
+
     // Extract the text associated with the image
     try {
       text = categoryMap.get(currentCategory).getText​(imageLoc);
@@ -166,7 +162,8 @@ public class AACMappings {
 
     // If it is a category, update the current category
     if (isCategory​(imageLoc)) {
-      currentCategory = parts[1]; // Extract the category name
+      // Extract the category name
+      currentCategory = parts[1];
     }
   
     return text;
@@ -177,7 +174,8 @@ public class AACMappings {
    * Determines if the image represents a category or text to speak.
    * Returns true if the image represents a category, false if the image represents text to speak 
    *
-   * @param imageLoc - the location where the image is stored  */
+   * @param imageLoc - the location where the image is stored  
+   * */
   public boolean isCategory​(String imageLoc) {
 
     // Trim any leading or trailing spaces
@@ -225,7 +223,7 @@ public class AACMappings {
         } catch (IOException e) {
           e.printStackTrace();
         }
-      }
-    }  
-  }
+      } // for
+    } // try 
+  } // writeToFile(String filename)
 } // class AACMappings

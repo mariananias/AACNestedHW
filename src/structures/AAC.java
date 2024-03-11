@@ -49,21 +49,6 @@ public class AAC implements ActionListener {
 	 */
 	public AAC(String filename) throws NullKeyException{ 
 		this.aacMappings = new AACMappings(filename);
-
-		
-		try {
-			System.out.println(("FOOD: ") + ((this.aacMappings.categoryMap.get("food")).words.toString()));
-		} catch (KeyNotFoundException e) {
-			e.printStackTrace();
-		}
-
-		try {
-			System.out.println(("CLOTHING: ") + ((this.aacMappings.categoryMap.get("clothing")).words.toString()));
-		} catch (KeyNotFoundException e) {
-			e.printStackTrace();
-		}
-		
-
 		this.images = this.aacMappings.getImageLocs();
 		this.startIndex = 0;
 		this.endIndex = Math.min(NUM_ACROSS*NUM_DOWN, this.images.length);
