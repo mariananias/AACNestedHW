@@ -169,6 +169,7 @@ public class AssociativeArray<K, V> {
 
     // If key does not exist
     catch (Exception e) {
+      System.out.println("KEY: " + key.toString());
       throw new KeyNotFoundException();
     }
 

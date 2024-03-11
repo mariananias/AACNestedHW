@@ -4,3 +4,4 @@ Class AACCategory: https://accessibilityeducation.github.io/assignments/AAC/AACC
 
 Class AACMappings: https://accessibilityeducation.github.io/assignments/AAC/AACMappings.html
 
+File Reading: https://www.digitalocean.com/community/tutorials/java-read-file-line-by-line
