@@ -97,6 +97,13 @@ public class AssociativeArray<K, V> {
   // +----------------+
 
   /**
+   * Returns the the key of the specified key/value pair on the array.
+   */
+  public K getKVPairKey(int index) {
+    return this.pairs[index].key;
+  }
+
+  /**
    * Set the value associated with key to value. Future calls to
    * get(key) will return value.
    */

@@ -1,10 +1,11 @@
-package structures;
-
 import java.io.BufferedWriter;
 import java.io.FileWriter;
 import java.io.BufferedReader; 
 import java.io.FileReader; 
 import java.io.IOException;
+import structures.AssociativeArray;
+import structures.KeyNotFoundException;
+import structures.NullKeyException;
 
 /**
  * AACMappings provide facilities for converting the path to an 
@@ -213,7 +214,7 @@ public class AACMappings {
   public void writeToFile(String filename) throws IOException {
     try (BufferedWriter writer = new BufferedWriter(new FileWriter(filename))) {
       for (int i = 0; i < categoryMap.size(); i++) {
-        String category = categoryMap.pairs[i].key;
+        String category = categoryMap.getKVPairKey(i);
         try {
           for (String location : this.categoryMap.get(category).getImages()) {
             writer.write(location + this.categoryMap.get(category).getText​(location) + '\n');

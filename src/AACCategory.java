@@ -1,4 +1,7 @@
-package structures;
+import structures.AssociativeArray;
+import structures.KeyNotFoundException;
+import structures.NullKeyException;
+
 /**
  * AACCategory provides facilities for converting the path to 
  * an image to the corresponding word.
@@ -54,7 +57,7 @@ public class AACCategory {
     String[] imgLocArr = new String[this.words.size()];
 
     for (int i = 0; i < this.words.size(); i++) {
-      imgLocArr[i] = this.words.pairs[i].key;
+      imgLocArr[i] = this.words.getKVPairKey(i);
     }
 
     return imgLocArr; 
